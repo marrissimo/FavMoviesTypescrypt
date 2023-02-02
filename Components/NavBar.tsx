@@ -8,14 +8,12 @@ export default function NavBar({ navigation }: any) {
       </View>
       <View style={styles.menuContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("Movies")}>
-          {" "}
           <Text style={styles.menuVoice}>Top Rated</Text>
         </TouchableOpacity>
         <TouchableOpacity
         /*           onPress={() => navigation.navigate("Favorites")}
          */
         >
-          {" "}
           <Text style={styles.menuVoice}>Favorites</Text>
         </TouchableOpacity>
       </View>
