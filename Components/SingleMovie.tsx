@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   Pressable,
 } from "react-native";
-
 import { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+
 interface MovieProps {
   movie: any;
   onClicked: (movie: any) => void;
@@ -29,8 +30,13 @@ export default function SingleMovie(props: MovieProps) {
       <Image source={image} style={styles.coverImage} />
       {isHovered && (
         <View style={styles.hoverView}>
-          <Text style={styles.label}>Text 1</Text>
-          <Text style={styles.label}>Text 2</Text>
+          <View style={styles.labelIcon}>
+            <Ionicons name="ios-star" size={15} color="#F6C725" />
+            <Text style={styles.label}>{props.movie.vote_average}</Text>
+          </View>
+          <Text style={styles.label}>
+            {props.movie.release_date.split("-")[0]}
+          </Text>
         </View>
       )}
       <Text style={styles.movieText}>{props.movie.title}</Text>
@@ -55,7 +61,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     resizeMode: "cover",
   },
-  label: { color: "white" },
+  labelIcon: { display: "flex", flexDirection: "row", gap: "4px" },
+  label: {
+    color: "white",
+    fontFamily: "Roboto_700Bold",
+    fontSize: 16,
+    lineHeight: 19,
+  },
   movieText: {
     maxWidth: "180px",
     height: "50px",
@@ -67,9 +79,10 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
   hoverView: {
+    position: "absolute",
     height: "270px",
     width: "100%",
-    position: "absolute",
+    padding: 9,
     marginBottom: "50px",
     backgroundColor:
       "linear-gradient(180deg, rgba(0, 0, 0, 0.348166) 0%, rgba(0, 0, 0, 0.741225) 100%),",

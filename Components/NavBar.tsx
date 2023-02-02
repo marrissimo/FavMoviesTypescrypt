@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 export default function NavBar({ navigation }: any) {
   return (
     <View style={styles.navBar}>

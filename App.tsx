@@ -49,8 +49,11 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100vw",
+    width: "100%",
     height: "100vh",
     backgroundColor: "#fff",
+    margin: 0,
+    paddingHorizontal: "240px",
+    paddingVertical: "0px",
   },
 });

@@ -65,15 +65,12 @@ export default function Movies({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100vw",
     display: "flex",
     flexDirection: "column",
     flexWrap: "nowrap",
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "flex-start",
-    paddingHorizontal: "240px",
-    paddingVertical: "0px",
   },
   moviesContainer: {
     width: "100%",
@@ -81,7 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     gap: "27px",
   },
 
@@ -92,21 +89,17 @@ const styles = StyleSheet.create({
     border: "1px solid rgba(0, 0, 0, 0.1)",
     boxShadow: " 0px 1px 0px rgba(0, 0, 0, 0.05)",
     borderRadius: 60,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
     marginTop: "58px",
     marginBottom: "53px",
   },
   textButton: {
     maxWidth: "180px",
     height: "50px",
-    marginTop: "10px",
     fontFamily: "Roboto_500Medium",
     fontSize: 16,
     lineHeight: 19,
     textAlign: "center",
     color: "#000000",
+    marginTop: "12px",
   },
 });
