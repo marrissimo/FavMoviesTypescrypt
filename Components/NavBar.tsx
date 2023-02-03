@@ -1,7 +1,11 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
-export default function NavBar({ navigation }: any) {
+interface NavBarProps {
+  navigation: any;
+}
+
+export default function NavBar(props: NavBarProps) {
   const activeRoute = useRoute().name;
   const activeColor = "#F5BD00";
   const inactiveColor = "#999999";
@@ -13,7 +17,7 @@ export default function NavBar({ navigation }: any) {
         <Text style={styles.boldTitle}>Movies</Text>
       </View>
       <View style={styles.menuContainer}>
-        <Pressable onPress={() => navigation.navigate("Movies")}>
+        <Pressable onPress={() => props.navigation.navigate("Movies")}>
           <Text
             style={[
               styles.menuVoice,
@@ -28,7 +32,7 @@ export default function NavBar({ navigation }: any) {
             Top Rated
           </Text>
         </Pressable>
-        <Pressable onPress={() => navigation.navigate("Favorites")}>
+        <Pressable onPress={() => props.navigation.navigate("Favorites")}>
           <Text
             style={[
               styles.menuVoice,

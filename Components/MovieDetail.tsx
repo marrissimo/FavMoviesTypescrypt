@@ -1,16 +1,26 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import NavBar from "./NavBar";
 import { Ionicons } from "@expo/vector-icons";
-
+import { useContext, useState } from "react";
+import { FavContext } from "./FavContext";
 interface MovieProps {
-  movie: any;
   route: any;
   navigation: any;
 }
 export default function MovieDetail(props: MovieProps) {
   const prefix = "https://image.tmdb.org/t/p/w500";
   const image = { uri: prefix + props.route.params.movie.poster_path };
-  const buttonText = "TASTO";
+  const [isFav, setIsFav] = useState(false);
+  const buttonText = isFav ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti";
+  const { favMovie, setFavMovie }: any = useContext(FavContext);
+
+  const addToFav = () => {
+    console.log("movie", props.route.params.movie);
+    console.log("favMovie_pre", favMovie);
+    favMovie.push(props.route.params.movie);
+    setFavMovie(favMovie);
+    console.log("favMovie_next", favMovie);
+  };
 
   return (
     <View style={styles.container}>
@@ -40,7 +50,16 @@ export default function MovieDetail(props: MovieProps) {
             <Text style={styles.movieText}>
               {props.route.params.movie.overview}
             </Text>
-            <Pressable style={styles.button}>
+            <Pressable
+              style={[
+                styles.button,
+                { backgroundColor: isFav ? "#F14B60" : "#F6C725" },
+              ]}
+              onPress={() => {
+                setIsFav(!isFav);
+                addToFav();
+              }}
+            >
               <Text style={styles.textButton}>{buttonText}</Text>
             </Pressable>
           </View>
@@ -103,7 +122,6 @@ const styles = StyleSheet.create({
   button: {
     width: "fit-content",
     height: "49px",
-    backgroundColor: "#F5BD00",
     borderRadius: 30,
     marginTop: "36px",
   },

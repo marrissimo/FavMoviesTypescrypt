@@ -4,10 +4,6 @@ import SingleMovie from "./SingleMovie";
 import NavBar from "./NavBar";
 import axios from "axios";
 
-interface MovieResults {
-  movieList: string[];
-}
-
 export default function Movies({ navigation }: any) {
   const [data, setData] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
