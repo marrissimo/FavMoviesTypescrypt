@@ -17,7 +17,12 @@ export default function NavBar({ navigation }: any) {
           <Text
             style={[
               styles.menuVoice,
-              { color: activeRoute === "Movies" ? activeColor : inactiveColor },
+              {
+                color:
+                  activeRoute === "Movies" || activeRoute === "Details"
+                    ? activeColor
+                    : inactiveColor,
+              },
             ]}
           >
             Top Rated
