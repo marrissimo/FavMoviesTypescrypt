@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import NavBar from "./NavBar";
 
-export default function Favorites() {
+interface FavProps {
+  navigation: any;
+}
+
+export default function Favorites(props: FavProps) {
   return (
     <View>
-      <NavBar />
+      <NavBar navigation={props.navigation} />
       <Text>Favorites</Text>
     </View>
   );
