@@ -1,5 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
+import { useRoute } from "@react-navigation/native";
+
 export default function NavBar({ navigation }: any) {
+  const activeRoute = useRoute().name;
+  const activeColor = "#F5BD00";
+  const inactiveColor = "#999999";
+
   return (
     <View style={styles.navBar}>
       <View style={styles.titleContainer}>
@@ -7,15 +13,29 @@ export default function NavBar({ navigation }: any) {
         <Text style={styles.boldTitle}>Movies</Text>
       </View>
       <View style={styles.menuContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("Movies")}>
-          <Text style={styles.menuVoice}>Top Rated</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-        /*           onPress={() => navigation.navigate("Favorites")}
-         */
-        >
-          <Text style={styles.menuVoice}>Favorites</Text>
-        </TouchableOpacity>
+        <Pressable onPress={() => navigation.navigate("Movies")}>
+          <Text
+            style={[
+              styles.menuVoice,
+              { color: activeRoute === "Movies" ? activeColor : inactiveColor },
+            ]}
+          >
+            Top Rated
+          </Text>
+        </Pressable>
+        <Pressable onPress={() => navigation.navigate("Favorites")}>
+          <Text
+            style={[
+              styles.menuVoice,
+              {
+                color:
+                  activeRoute === "Favorites" ? activeColor : inactiveColor,
+              },
+            ]}
+          >
+            Favorites
+          </Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -63,6 +83,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 28,
     letterSpacing: 0.646,
-    color: "#999999",
   },
 });

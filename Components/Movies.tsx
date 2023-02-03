@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import { useState, useEffect } from "react";
 import SingleMovie from "./SingleMovie";
 import NavBar from "./NavBar";

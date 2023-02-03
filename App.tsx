@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import Movies from "./Components/Movies";
 import MovieDetail from "./Components/MovieDetail";
+import Favorites from "./Components/Favorites";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -30,17 +31,17 @@ export default function App() {
             component={Movies}
             options={{ title: "FavMovies" }}
           />
+          <Stack.Screen
+            name="Favorites"
+            component={Favorites}
+            options={{ title: "Favorites Movies" }}
+          />
 
           <Stack.Screen
             name="Details"
             component={MovieDetail}
             options={{ title: "Details" }}
           />
-          {/*   <Stack.Screen
-            name="Favorites"
-            component={Favorites}
-            options={{ title: "Favorites Movies" }}
-          />  */}
         </Stack.Navigator>
       </NavigationContainer>
     </View>
