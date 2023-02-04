@@ -10,16 +10,27 @@ interface MovieProps {
 export default function MovieDetail(props: MovieProps) {
   const prefix = "https://image.tmdb.org/t/p/w500";
   const image = { uri: prefix + props.route.params.movie.poster_path };
-  const [isFav, setIsFav] = useState(false);
-  const buttonText = isFav ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti";
   const { favMovie, setFavMovie }: any = useContext(FavContext);
+  const [isFav, setIsFav] = useState(
+    favMovie.includes(props.route.params.movie)
+  );
+  console.log("isFav:", isFav);
+  const buttonText = isFav ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti";
 
   const addToFav = () => {
-    console.log("movie", props.route.params.movie);
-    console.log("favMovie_pre", favMovie);
     favMovie.push(props.route.params.movie);
     setFavMovie(favMovie);
-    console.log("favMovie_next", favMovie);
+  };
+
+  const removeFav = (movIdtodelete: number): void => {
+    console.log("REMOVE");
+    const newFavList = favMovie.filter((movie: any) => {
+      console.log("movidtodelete", movIdtodelete);
+      console.log(movie.id);
+      return movie.id !== movIdtodelete;
+    });
+    console.log("favMovie_dopoRimozione", newFavList);
+    setFavMovie(newFavList);
   };
 
   return (
@@ -57,7 +68,7 @@ export default function MovieDetail(props: MovieProps) {
               ]}
               onPress={() => {
                 setIsFav(!isFav);
-                addToFav();
+                isFav ? removeFav(props.route.params.movie.id) : addToFav();
               }}
             >
               <Text style={styles.textButton}>{buttonText}</Text>
