@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "flex-start",
+    height: "100%",
   },
   moviesContainer: {
     width: "100%",

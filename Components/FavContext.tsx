@@ -4,7 +4,7 @@ import Movie from "./MovieInterface";
 export const FavContext = createContext<any>([]);
 
 export const FavProvider = ({ children }: any) => {
-  const [favMovie, setFavMovie] = useState<Movie[] | null>(null);
+  const [favMovie, setFavMovie] = useState<Movie[] | []>([]);
 
   return (
     <FavContext.Provider value={{ favMovie, setFavMovie }}>

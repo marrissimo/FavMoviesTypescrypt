@@ -12,13 +12,19 @@ interface MovieProps {
 export default function MovieDetail(props: MovieProps) {
   const prefix: string = "https://image.tmdb.org/t/p/w500";
   const image: object = { uri: prefix + props.route.params.movie.poster_path };
+  const date: string[] = new Date(props.route.params.movie.release_date)
+    .toDateString()
+    .split(" ");
+  const date_noDay: string = date[2] + " " + date[1] + " " + date[3];
   const { favMovie, setFavMovie }: any = useContext(FavContext);
-  const [isFav, setIsFav] = useState(
+  const [isFav, setIsFav] = useState<boolean>(
     favMovie.includes(props.route.params.movie)
   );
-  const buttonText = isFav ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti";
+  const buttonText: string = isFav
+    ? "Rimuovi dai preferiti"
+    : "Aggiungi ai preferiti";
 
-  const addToFav = () => {
+  const addToFav = (): void => {
     favMovie.push(props.route.params.movie);
     setFavMovie(favMovie);
   };
@@ -52,7 +58,7 @@ export default function MovieDetail(props: MovieProps) {
               </Text>
               <Ionicons name="ios-calendar" size={15} color="#F6C725" />
               <Text style={[styles.movieLabel, { marginLeft: "8px" }]}>
-                {props.route.params.movie.release_date}
+                {date_noDay}
               </Text>
             </View>
             <Text style={styles.movieText}>
