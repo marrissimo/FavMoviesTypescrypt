@@ -1,14 +1,14 @@
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-
+import Movie from "./MovieInterface";
 interface MovieProps {
-  movie: any;
-  onClicked: (movie: any) => void;
+  movie: Movie;
+  onClicked: (movie: Movie) => void;
 }
 export default function SingleMovie(props: MovieProps) {
-  const prefix = "https://image.tmdb.org/t/p/w500";
-  const image = { uri: prefix + props.movie.poster_path };
+  const prefix: string = "https://image.tmdb.org/t/p/w500";
+  const image: object = { uri: prefix + props.movie.poster_path };
   const [isHovered, setIsHovered] = useState(false);
 
   return (

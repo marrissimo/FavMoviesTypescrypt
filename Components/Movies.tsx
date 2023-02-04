@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import SingleMovie from "./SingleMovie";
 import NavBar from "./NavBar";
 import axios from "axios";
+import Movie from "./MovieInterface";
 
 export default function Movies({ navigation }: any) {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<object[]>([]);
   const [page, setPage] = useState<number>(1);
   const [error, setError] = useState<any>(null);
 
@@ -21,8 +22,6 @@ export default function Movies({ navigation }: any) {
       }
     };
     loadMovies();
-
-    //console.log("API_CALL_GENERALE", data);
   }, []);
   const loadMore = async () => {
     const pageNew: number = page + 1;
@@ -38,7 +37,7 @@ export default function Movies({ navigation }: any) {
     }
   };
 
-  const movieClicked = (movie: any) => {
+  const movieClicked = (movie: Movie) => {
     navigation.navigate("Details", { movie });
   };
 

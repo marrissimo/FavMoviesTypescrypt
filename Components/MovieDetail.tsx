@@ -3,18 +3,19 @@ import NavBar from "./NavBar";
 import { Ionicons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
 import { FavContext } from "./FavContext";
+import Movie from "./MovieInterface";
+
 interface MovieProps {
   route: any;
   navigation: any;
 }
 export default function MovieDetail(props: MovieProps) {
-  const prefix = "https://image.tmdb.org/t/p/w500";
-  const image = { uri: prefix + props.route.params.movie.poster_path };
+  const prefix: string = "https://image.tmdb.org/t/p/w500";
+  const image: object = { uri: prefix + props.route.params.movie.poster_path };
   const { favMovie, setFavMovie }: any = useContext(FavContext);
   const [isFav, setIsFav] = useState(
     favMovie.includes(props.route.params.movie)
   );
-  console.log("isFav:", isFav);
   const buttonText = isFav ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti";
 
   const addToFav = () => {
@@ -23,13 +24,9 @@ export default function MovieDetail(props: MovieProps) {
   };
 
   const removeFav = (movIdtodelete: number): void => {
-    console.log("REMOVE");
-    const newFavList = favMovie.filter((movie: any) => {
-      console.log("movidtodelete", movIdtodelete);
-      console.log(movie.id);
+    const newFavList: Movie[] = favMovie.filter((movie: Movie) => {
       return movie.id !== movIdtodelete;
     });
-    console.log("favMovie_dopoRimozione", newFavList);
     setFavMovie(newFavList);
   };
 

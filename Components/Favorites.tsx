@@ -3,23 +3,25 @@ import { StyleSheet, View } from "react-native";
 import { FavContext } from "./FavContext";
 import NavBar from "./NavBar";
 import SingleMovie from "./SingleMovie";
+import Movie from "./MovieInterface";
 
 interface FavProps {
   navigation: any;
   route: any;
-  movieClicked: (movie: any) => void;
 }
 
 export default function Favorites(props: FavProps) {
-  const { favMovie }: any = useContext(FavContext);
-  console.log("favMovie_favorites", favMovie);
+  const { favMovie } = useContext(FavContext);
+  const movieClicked = (movie: Movie) => {
+    props.navigation.navigate("Details", { movie });
+  };
   return (
     <View style={styles.container}>
       <NavBar navigation={props.navigation} />
 
       <View style={styles.moviesContainer}>
-        {favMovie?.map((movie: any, key: number) => (
-          <SingleMovie key={key} movie={movie} onClicked={props.movieClicked} />
+        {favMovie?.map((movie: Movie, key: number) => (
+          <SingleMovie key={key} movie={movie} onClicked={movieClicked} />
         ))}
       </View>
     </View>
