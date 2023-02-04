@@ -6,7 +6,7 @@ import axios from "axios";
 import Movie from "./MovieInterface";
 
 export default function Movies({ navigation }: any) {
-  const [data, setData] = useState<object[]>([]);
+  const [data, setData] = useState<Movie[]>([]);
   const [page, setPage] = useState<number>(1);
   const [error, setError] = useState<any>(null);
 
