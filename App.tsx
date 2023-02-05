@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
-import Movies from "./Components/Movies";
-import MovieDetail from "./Components/MovieDetail";
-import Favorites from "./Components/Favorites";
+import Movies from "./Components/Pages/Movies";
+import MovieDetail from "./Components/Pages/MovieDetail";
+import Favorites from "./Components/Pages/Favorites";
 import { FavProvider } from "./Components/FavContext";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";

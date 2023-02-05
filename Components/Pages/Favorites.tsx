@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { StyleSheet, View } from "react-native";
-import { FavContext } from "./FavContext";
-import NavBar from "./NavBar";
-import SingleMovie from "./SingleMovie";
-import Movie from "./MovieInterface";
+import { FavContext } from "../FavContext";
+import NavBar from "../NavBar";
+import SingleMovie from "../SingleMovie";
+import Movie from "../MovieInterface";
 
 interface FavProps {
   navigation: any;
