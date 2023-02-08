@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { useState, useEffect } from "react";
-import SingleMovie from "./SingleMovie";
-import NavBar from "./NavBar";
+import SingleMovie from "../SingleMovie";
+import NavBar from "../NavBar";
 import axios from "axios";
-import Movie from "./MovieInterface";
+import Movie from "../MovieInterface";
 
 export default function Movies({ navigation }: any) {
   const [data, setData] = useState<Movie[]>([]);

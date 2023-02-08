@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 import { Ionicons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
-import { FavContext } from "./FavContext";
-import Movie from "./MovieInterface";
+import { FavContext } from "../FavContext";
+import Movie from "../MovieInterface";
 
 interface MovieProps {
   route: any;
