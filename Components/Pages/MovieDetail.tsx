@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
-import NavBar from "../NavBar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
-import { FavContext } from "../FavContext";
-import { SingleMovieProps } from "../types";
-import { MovieInterface } from "../types";
+import { FavContext } from "@components/FavContext";
+import NavBar from "@components/NavBar";
+import { SingleMovieProps } from "@types";
+import { MovieInterface } from "@types";
 
 export default function MovieDetail(props: SingleMovieProps) {
   const prefix: string = "https://image.tmdb.org/t/p/w500";
@@ -14,9 +15,25 @@ export default function MovieDetail(props: SingleMovieProps) {
     .split(" ");
   const date_noDay: string = date[2] + " " + date[1] + " " + date[3];
   const { favMovie, setFavMovie }: any = useContext(FavContext);
-  const [isFav, setIsFav] = useState<boolean>(
+  const [isFav, setIsFav] = useState(
     favMovie.includes(props.route.params.movie)
   );
+
+  const isItemInList = () => {
+    return AsyncStorage.getItem("favMovie").then((data) => {
+      if (data) {
+        const parsedData = JSON.parse(data);
+        const bool: boolean = parsedData.some(
+          (item: any) => item.id === props.route.params.movie.id
+        );
+        setIsFav(bool);
+        return bool;
+      }
+      return false;
+    });
+  };
+  isItemInList();
+
   const buttonText: string = isFav
     ? "Rimuovi dai preferiti"
     : "Aggiungi ai preferiti";
@@ -24,6 +41,7 @@ export default function MovieDetail(props: SingleMovieProps) {
   const addToFav = (): void => {
     favMovie.push(props.route.params.movie);
     setFavMovie(favMovie);
+    AsyncStorage.setItem("favMovie", JSON.stringify(favMovie));
   };
 
   const removeFav = (movIdtodelete: number): void => {
@@ -33,6 +51,7 @@ export default function MovieDetail(props: SingleMovieProps) {
       }
     );
     setFavMovie(newFavList);
+    AsyncStorage.setItem("favMovie", JSON.stringify(newFavList));
   };
 
   return (

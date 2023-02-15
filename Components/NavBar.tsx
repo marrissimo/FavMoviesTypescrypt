@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { NavBarProps } from "./types";
+import { NavBarProps } from "@types";
 
 export default function NavBar(props: NavBarProps) {
   const activeRoute = useRoute().name;

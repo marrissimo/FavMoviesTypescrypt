@@ -1,8 +1,8 @@
 import { StyleSheet, View } from "react-native";
-import Movies from "./components/pages/Movies";
-import MovieDetail from "./components/pages/MovieDetail";
-import Favorites from "./components/pages/Favorites";
-import { FavProvider } from "./components/FavContext";
+import Movies from "@pages/Movies";
+import MovieDetail from "@pages/MovieDetail";
+import Favorites from "@pages/Favorites";
+import { FavProvider } from "@components/FavContext";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -13,7 +13,6 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { Dimensions } from "react-native";
-
 const fullHeight = Dimensions.get("window").height;
 
 export default function App() {

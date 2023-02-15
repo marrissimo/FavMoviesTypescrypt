@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { StyleSheet, View } from "react-native";
-import { FavContext } from "../FavContext";
-import NavBar from "../NavBar";
-import SingleMovie from "../SingleMovie";
-import { MovieInterface } from "../types";
+import { FavContext } from "@components/FavContext";
+import NavBar from "@components/NavBar";
+import SingleMovie from "@components/SingleMovie";
+import { MovieInterface } from "@types";
 import { FavProps } from "../types";
 
 export default function Favorites(props: FavProps) {
