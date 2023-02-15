@@ -12,6 +12,10 @@ import {
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
 
+import { Dimensions } from "react-native";
+
+const fullHeight = Dimensions.get("window").height;
+
 export default function App() {
   const Stack = createNativeStackNavigator();
   let [fontsLoaded] = useFonts({
@@ -54,10 +58,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "100vh",
+    height: fullHeight,
     backgroundColor: "#fff",
     margin: 0,
-    paddingHorizontal: "240px",
-    paddingVertical: "0px",
+    paddingHorizontal: 240,
+    paddingVertical: 0,
   },
 });

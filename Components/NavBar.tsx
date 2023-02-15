@@ -50,15 +50,13 @@ export default function NavBar(props: NavBarProps) {
 const styles = StyleSheet.create({
   navBar: {
     width: "100%",
-    height: "130px",
-    display: "flex",
+    height: 130,
     flexDirection: "row",
     flexWrap: "nowrap",
     alignItems: "center",
     justifyContent: "space-between",
   },
   titleContainer: {
-    display: "flex",
     flexDirection: "row",
     flexWrap: "nowrap",
   },
@@ -77,10 +75,9 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
   menuContainer: {
-    display: "flex",
     flexDirection: "row",
     flexWrap: "nowrap",
-    gap: "52px",
+    gap: 52,
   },
   menuVoice: {
     fontFamily: "Roboto_500Medium",

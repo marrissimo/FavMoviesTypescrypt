@@ -2,11 +2,21 @@ import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { MovieProps } from "./types";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function SingleMovie(props: MovieProps) {
   const prefix: string = "https://image.tmdb.org/t/p/w500";
   const image: object = { uri: prefix + props.movie.poster_path };
   const [isHovered, setIsHovered] = useState(false);
+
+  function rgba(
+    arg0: number,
+    arg1: number,
+    arg2: number,
+    arg3: number
+  ): string {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <Pressable
@@ -19,7 +29,10 @@ export default function SingleMovie(props: MovieProps) {
     >
       <Image source={image} style={styles.coverImage} />
       {isHovered && (
-        <View style={styles.hoverView}>
+        <LinearGradient
+          colors={["#00000059", "#000000bd"]}
+          style={styles.hoverView}
+        >
           <View style={styles.labelIcon}>
             <Ionicons name="ios-star" size={15} color="#F6C725" />
             <Text style={styles.label}>{props.movie.vote_average}</Text>
@@ -27,7 +40,7 @@ export default function SingleMovie(props: MovieProps) {
           <Text style={styles.label}>
             {props.movie.release_date.split("-")[0]}
           </Text>
-        </View>
+        </LinearGradient>
       )}
       <Text style={styles.movieText}>{props.movie.title}</Text>
     </Pressable>
@@ -36,22 +49,21 @@ export default function SingleMovie(props: MovieProps) {
 
 const styles = StyleSheet.create({
   movieContainer: {
-    width: "180px",
-    height: "320px",
-    display: "flex",
+    width: 180,
+    height: 320,
     flexDirection: "column",
     backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "20px",
+    marginTop: 20,
   },
   coverImage: {
-    width: "180px",
-    height: "270px",
+    width: 180,
+    height: 270,
     borderRadius: 10,
     resizeMode: "cover",
   },
-  labelIcon: { display: "flex", flexDirection: "row", gap: "4px" },
+  labelIcon: { flexDirection: "row", gap: 4 },
   label: {
     color: "white",
     fontFamily: "Roboto_700Bold",
@@ -59,9 +71,9 @@ const styles = StyleSheet.create({
     lineHeight: 19,
   },
   movieText: {
-    maxWidth: "180px",
-    height: "50px",
-    marginTop: "10px",
+    maxWidth: 180,
+    height: 50,
+    marginTop: 10,
     fontFamily: "Roboto_400Regular",
     fontSize: 16,
     lineHeight: 19,
@@ -70,14 +82,11 @@ const styles = StyleSheet.create({
   },
   hoverView: {
     position: "absolute",
-    height: "270px",
+    height: 270,
     width: "100%",
     padding: 9,
-    marginBottom: "50px",
-    backgroundColor:
-      "linear-gradient(180deg, rgba(0, 0, 0, 0.348166) 0%, rgba(0, 0, 0, 0.741225) 100%),",
+    marginBottom: 50,
     borderRadius: 10,
-    display: "flex",
     flexDirection: "row",
     flexWrap: "nowrap",
     justifyContent: "space-between",

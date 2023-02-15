@@ -48,15 +48,12 @@ export default function MovieDetail(props: SingleMovieProps) {
             <View style={styles.labelContainer}>
               <Ionicons name="ios-star" size={15} color="#F6C725" />
               <Text
-                style={[
-                  styles.movieLabel,
-                  { marginLeft: "4px", marginRight: "18px" },
-                ]}
+                style={[styles.movieLabel, { marginLeft: 4, marginRight: 18 }]}
               >
                 {props.route.params.movie.vote_average}
               </Text>
               <Ionicons name="ios-calendar" size={15} color="#F6C725" />
-              <Text style={[styles.movieLabel, { marginLeft: "8px" }]}>
+              <Text style={[styles.movieLabel, { marginLeft: 8 }]}>
                 {date_noDay}
               </Text>
             </View>
@@ -85,7 +82,6 @@ export default function MovieDetail(props: SingleMovieProps) {
 const styles = StyleSheet.create({
   container: {
     height: "100%",
-    display: "flex",
     flexDirection: "column",
     flexWrap: "nowrap",
     backgroundColor: "#fff",
@@ -99,26 +95,25 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   labelContainer: {
-    display: "flex",
     flexDirection: "row",
     flexWrap: "nowrap",
-    marginTop: "22px",
+    marginTop: 22,
   },
   coverImage: {
-    width: "262px",
-    height: "393px",
-    marginRight: "50px",
+    width: 262,
+    height: 393,
+    marginRight: 50,
   },
   movieTitle: {
-    maxWidth: "450px",
+    maxWidth: 450,
     fontFamily: "Roboto_700Bold",
     fontSize: 36,
     lineHeight: 42,
     color: "#000000",
   },
   movieText: {
-    maxWidth: "508px",
-    marginTop: "15px",
+    maxWidth: 508,
+    marginTop: 15,
     fontFamily: "Roboto_400Regular",
     fontSize: 18,
     lineHeight: 26,
@@ -134,9 +129,9 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "fit-content",
-    height: "49px",
+    height: 49,
     borderRadius: 30,
-    marginTop: "36px",
+    marginTop: 36,
   },
   textButton: {
     fontFamily: "Roboto_700Bold",
@@ -144,7 +139,7 @@ const styles = StyleSheet.create({
     lineHeight: 23,
     textAlign: "center",
     color: "white",
-    marginTop: "14px",
-    paddingHorizontal: "33px",
+    marginTop: 14,
+    paddingHorizontal: 33,
   },
 });
