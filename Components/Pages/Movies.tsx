@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import SingleMovie from "../SingleMovie";
 import NavBar from "../NavBar";
 import axios from "axios";
-import Movie from "../MovieInterface";
+import { MovieInterface } from "../types";
 
 export default function Movies({ navigation }: any) {
-  const [data, setData] = useState<Movie[]>([]);
+  const [data, setData] = useState<MovieInterface[]>([]);
   const [page, setPage] = useState<number>(1);
   const [error, setError] = useState<any>(null);
 
@@ -37,7 +37,7 @@ export default function Movies({ navigation }: any) {
     }
   };
 
-  const movieClicked = (movie: Movie) => {
+  const movieClicked = (movie: MovieInterface) => {
     navigation.navigate("Details", { movie });
   };
 

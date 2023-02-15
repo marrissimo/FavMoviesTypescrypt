@@ -3,13 +3,10 @@ import NavBar from "../NavBar";
 import { Ionicons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
 import { FavContext } from "../FavContext";
-import Movie from "../MovieInterface";
+import { SingleMovieProps } from "../types";
+import { MovieInterface } from "../types";
 
-interface MovieProps {
-  route: any;
-  navigation: any;
-}
-export default function MovieDetail(props: MovieProps) {
+export default function MovieDetail(props: SingleMovieProps) {
   const prefix: string = "https://image.tmdb.org/t/p/w500";
   const image: object = { uri: prefix + props.route.params.movie.poster_path };
   const date: string[] = new Date(props.route.params.movie.release_date)
@@ -30,9 +27,11 @@ export default function MovieDetail(props: MovieProps) {
   };
 
   const removeFav = (movIdtodelete: number): void => {
-    const newFavList: Movie[] = favMovie.filter((movie: Movie) => {
-      return movie.id !== movIdtodelete;
-    });
+    const newFavList: MovieInterface[] = favMovie.filter(
+      (movie: MovieInterface) => {
+        return movie.id !== movIdtodelete;
+      }
+    );
     setFavMovie(newFavList);
   };
 

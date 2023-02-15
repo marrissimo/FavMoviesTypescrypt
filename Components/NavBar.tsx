@@ -1,9 +1,6 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { useRoute } from "@react-navigation/native";
-
-interface NavBarProps {
-  navigation: any;
-}
+import { NavBarProps } from "./types";
 
 export default function NavBar(props: NavBarProps) {
   const activeRoute = useRoute().name;
@@ -64,7 +61,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "nowrap",
-    flexBasis: "initial",
   },
   title: {
     fontFamily: "Roboto_400Regular",
@@ -84,7 +80,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "nowrap",
-    flexBasis: "initial",
     gap: "52px",
   },
   menuVoice: {
