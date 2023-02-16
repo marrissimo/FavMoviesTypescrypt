@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
     color: "#B2B2B2",
   },
   button: {
-    width: "fit-content",
-    height: 49,
+    /*     width: "fit-content",
+     */ height: 49,
     borderRadius: 30,
     marginTop: 36,
   },

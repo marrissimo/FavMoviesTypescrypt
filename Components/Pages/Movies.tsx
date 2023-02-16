@@ -59,22 +59,25 @@ export default function Movies({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
+    /* 
     flexDirection: "column",
     flexWrap: "nowrap",
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "flex-start", */
   },
   moviesContainer: {
+    /* 
     width: "100%",
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 27,
+    gap: 27, */
   },
 
   button: {
+    /* 
     width: 155,
     height: 46,
     backgroundColor: "#F9F9F9",
@@ -86,16 +89,16 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
     marginTop: 58,
-    marginBottom: 53,
+    marginBottom: 53, */
   },
   textButton: {
-    maxWidth: 180,
+    /*  maxWidth: 180,
     height: 50,
     fontFamily: "Roboto_500Medium",
     fontSize: 16,
     lineHeight: 19,
     textAlign: "center",
     color: "#000000",
-    marginTop: 12,
+    marginTop: 12, */
   },
 });

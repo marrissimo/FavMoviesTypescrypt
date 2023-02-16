@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     height: fullHeight,
     backgroundColor: "#fff",
     margin: 0,
-    paddingHorizontal: 240,
-    paddingVertical: 0,
+    /*     paddingHorizontal: 240,
+     */ paddingVertical: 0,
   },
 });

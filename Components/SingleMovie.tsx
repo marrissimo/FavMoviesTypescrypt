@@ -12,8 +12,8 @@ export default function SingleMovie(props: MovieProps) {
   return (
     <Pressable
       style={styles.movieContainer}
-      onHoverIn={() => setIsHovered(true)}
-      onHoverOut={() => setIsHovered(false)}
+      /* onHoverIn={() => setIsHovered(true)}
+      onHoverOut={() => setIsHovered(false)} */
       onPress={() => {
         props.onClicked(props.movie);
       }}
