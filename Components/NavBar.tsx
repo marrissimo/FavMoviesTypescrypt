@@ -1,50 +1,54 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable, Platform } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { NavBarProps } from "@types";
+
+export const isWeb: boolean = Platform.OS === "web";
 
 export default function NavBar(props: NavBarProps) {
   const activeRoute = useRoute().name;
   const activeColor = "#F5BD00";
   const inactiveColor = "#999999";
 
-  return (
-    <View style={styles.navBar}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Fav</Text>
-        <Text style={styles.boldTitle}>Movies</Text>
+  if (isWeb)
+    return (
+      <View style={styles.navBar}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Fav</Text>
+          <Text style={styles.boldTitle}>Movies</Text>
+        </View>
+        <View style={styles.menuContainer}>
+          <Pressable onPress={() => props.navigation.navigate("Movies")}>
+            <Text
+              style={[
+                styles.menuVoice,
+                {
+                  color:
+                    activeRoute === "Movies" || activeRoute === "Details"
+                      ? activeColor
+                      : inactiveColor,
+                },
+              ]}
+            >
+              Top Rated
+            </Text>
+          </Pressable>
+          <Pressable onPress={() => props.navigation.navigate("Favorites")}>
+            <Text
+              style={[
+                styles.menuVoice,
+                {
+                  color:
+                    activeRoute === "Favorites" ? activeColor : inactiveColor,
+                },
+              ]}
+            >
+              Favorites
+            </Text>
+          </Pressable>
+        </View>
       </View>
-      <View style={styles.menuContainer}>
-        <Pressable onPress={() => props.navigation.navigate("Movies")}>
-          <Text
-            style={[
-              styles.menuVoice,
-              {
-                color:
-                  activeRoute === "Movies" || activeRoute === "Details"
-                    ? activeColor
-                    : inactiveColor,
-              },
-            ]}
-          >
-            Top Rated
-          </Text>
-        </Pressable>
-        <Pressable onPress={() => props.navigation.navigate("Favorites")}>
-          <Text
-            style={[
-              styles.menuVoice,
-              {
-                color:
-                  activeRoute === "Favorites" ? activeColor : inactiveColor,
-              },
-            ]}
-          >
-            Favorites
-          </Text>
-        </Pressable>
-      </View>
-    </View>
-  );
+    );
+  else return null;
 }
 
 const styles = StyleSheet.create({

@@ -1,14 +1,41 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  FlatList,
+  Platform,
+} from "react-native";
 import { useState, useEffect } from "react";
 import SingleMovie from "@components/SingleMovie";
 import NavBar from "@components/NavBar";
 import axios from "axios";
 import { MovieInterface } from "@types";
 
+import { Dimensions } from "react-native";
+const fullwidth = Dimensions.get("window").width;
+export const isWeb: boolean = Platform.OS === "web";
+
 export default function Movies({ navigation }: any) {
   const [data, setData] = useState<MovieInterface[]>([]);
   const [page, setPage] = useState<number>(1);
   const [error, setError] = useState<any>(null);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Pressable
+          onPress={() => {
+            navigation.navigate("Favorites");
+          }}
+        >
+          <Text style={{ color: "#007AFF", fontSize: 17, lineHeight: 19 }}>
+            Favorites
+          </Text>
+        </Pressable>
+      ),
+    });
+  }, [navigation]);
 
   useEffect(() => {
     const loadMovies = async () => {
@@ -23,6 +50,7 @@ export default function Movies({ navigation }: any) {
     };
     loadMovies();
   }, []);
+
   const loadMore = async () => {
     const pageNew: number = page + 1;
     setPage(pageNew);
@@ -45,39 +73,48 @@ export default function Movies({ navigation }: any) {
     <View style={styles.container}>
       <NavBar navigation={navigation} />
 
-      <View style={styles.moviesContainer}>
-        {data.map((movie, key) => (
-          <SingleMovie key={key} movie={movie} onClicked={movieClicked} />
-        ))}
-      </View>
-      <Pressable style={styles.button} onPress={loadMore}>
-        <Text style={styles.textButton}>Load More</Text>
-      </Pressable>
+      <FlatList
+        contentContainerStyle={[
+          styles.moviesContainer,
+          isWeb && { flexWrap: "wrap" },
+        ]}
+        data={data}
+        renderItem={({ item }) => (
+          <SingleMovie movie={item} onClicked={movieClicked} />
+        )}
+        keyExtractor={(item) => String(item.id)}
+        onEndReachedThreshold={0.01}
+        onEndReached={() => {
+          if (!isWeb) loadMore();
+        }}
+      />
+      {isWeb && (
+        <Pressable style={styles.button} onPress={loadMore}>
+          <Text style={styles.textButton}>Load More</Text>
+        </Pressable>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    /* 
     flexDirection: "column",
     flexWrap: "nowrap",
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "flex-start", */
+    justifyContent: "flex-start",
   },
   moviesContainer: {
-    /* 
-    width: "100%",
-    flexDirection: "row",
-    flexWrap: "wrap",
+    width: isWeb ? "100%" : fullwidth,
+    flexDirection: isWeb ? "row" : "column",
+    numColumns: isWeb ? 4 : 1,
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 27, */
+    gap: 27,
   },
 
   button: {
-    /* 
     width: 155,
     height: 46,
     backgroundColor: "#F9F9F9",
@@ -89,16 +126,16 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
     marginTop: 58,
-    marginBottom: 53, */
+    marginBottom: 53,
   },
   textButton: {
-    /*  maxWidth: 180,
+    maxWidth: 180,
     height: 50,
     fontFamily: "Roboto_500Medium",
     fontSize: 16,
     lineHeight: 19,
     textAlign: "center",
     color: "#000000",
-    marginTop: 12, */
+    marginTop: 12,
   },
 });

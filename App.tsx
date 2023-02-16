@@ -1,10 +1,11 @@
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View, Text, Platform } from "react-native";
 import Movies from "@pages/Movies";
 import MovieDetail from "@pages/MovieDetail";
 import Favorites from "@pages/Favorites";
 import { FavProvider } from "@components/FavContext";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 import {
   useFonts,
   Roboto_400Regular,
@@ -14,6 +15,7 @@ import {
 
 import { Dimensions } from "react-native";
 const fullHeight = Dimensions.get("window").height;
+export const isWeb: boolean = Platform.OS === "web";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -34,18 +36,46 @@ export default function App() {
             <Stack.Screen
               name="Movies"
               component={Movies}
-              options={{ title: "FavMovies" }}
+              options={{
+                title: "Movies",
+                headerStyle: { backgroundColor: "#F8F8F8" },
+                headerShown: isWeb ? false : true,
+                headerRight: () => (
+                  <Pressable onPress={() => {}}>
+                    <Text>Favorites</Text>
+                  </Pressable>
+                ),
+              }}
             />
             <Stack.Screen
               name="Favorites"
               component={Favorites}
-              options={{ title: "Favorites Movies" }}
+              options={{
+                title: "Favorites",
+                headerStyle: { backgroundColor: "#F8F8F8" },
+                headerShown: isWeb ? false : true,
+                headerBackTitle: "Movies",
+              }}
             />
 
             <Stack.Screen
               name="Details"
               component={MovieDetail}
-              options={{ title: "Details" }}
+              options={{
+                title: "Movie Info",
+                headerShown: isWeb ? false : true,
+                headerStyle: { backgroundColor: "#F8F8F8" },
+                headerBackTitle: "Movies",
+                headerRight: () => (
+                  <Pressable onPress={() => {}}>
+                    <Ionicons
+                      name="ios-heart-outline"
+                      size={25}
+                      color="#007AFF"
+                    />
+                  </Pressable>
+                ),
+              }}
             />
           </Stack.Navigator>
         </NavigationContainer>
@@ -60,7 +90,7 @@ const styles = StyleSheet.create({
     height: fullHeight,
     backgroundColor: "#fff",
     margin: 0,
-    /*     paddingHorizontal: 240,
-     */ paddingVertical: 0,
+    paddingHorizontal: isWeb ? 240 : 0,
+    paddingVertical: 0,
   },
 });

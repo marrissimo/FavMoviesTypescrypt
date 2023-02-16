@@ -5,6 +5,7 @@ export interface NavBarProps {
 export interface MovieInterface {
   id: number;
   poster_path: string;
+  backdrop_path: string;
   title: string;
   overview: string;
   vote_average: number;
