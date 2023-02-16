@@ -32,7 +32,11 @@ export default function SingleMovie(props: MovieProps) {
         props.onClicked(props.movie);
       }}
     >
-      <View style={{ flexDirection: "row" }}>
+      <View
+        style={{
+          flexDirection: isWeb ? "column" : "row",
+        }}
+      >
         <Image source={image} style={styles.coverImage} />
         {isHovered && (
           <LinearGradient
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
   },
   textLabel: {
     flexDirection: "column",
-    marginRight: 41,
+    marginRight: isWeb ? 0 : 41,
     justifyContent: "center",
   },
   labelRow: { flexDirection: "row", gap: 5 },

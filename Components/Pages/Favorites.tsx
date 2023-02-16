@@ -1,10 +1,13 @@
 import { useContext } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View, ScrollView } from "react-native";
 import { FavContext } from "@components/FavContext";
 import NavBar from "@components/NavBar";
 import SingleMovie from "@components/SingleMovie";
 import { MovieInterface } from "@types";
 import { FavProps } from "../types";
+import { Dimensions } from "react-native";
+const fullwidth = Dimensions.get("window").width;
+export const isWeb: boolean = Platform.OS === "web";
 
 export default function Favorites(props: FavProps) {
   const { favMovie } = useContext(FavContext);
@@ -15,11 +18,11 @@ export default function Favorites(props: FavProps) {
     <View style={styles.container}>
       <NavBar navigation={props.navigation} />
 
-      <View style={styles.moviesContainer}>
+      <ScrollView contentContainerStyle={styles.moviesContainer}>
         {favMovie?.map((movie: MovieInterface, key: number) => (
           <SingleMovie key={key} movie={movie} onClicked={movieClicked} />
         ))}
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -32,14 +35,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     height: "100%",
+    overflow: "hidden",
   },
   moviesContainer: {
-    width: "100%",
-    flexDirection: "row",
+    width: isWeb ? "100%" : fullwidth,
+    flexDirection: isWeb ? "row" : "column",
     flexWrap: "wrap",
     alignItems: "center",
-    justifyContent: "flex-start",
-    gap: 27,
+    justifyContent: "space-between",
+    rowGap: 0,
+    columnGap: 27,
+    overflow: "hidden",
   },
 
   button: {

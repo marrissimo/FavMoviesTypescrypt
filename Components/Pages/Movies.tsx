@@ -11,8 +11,8 @@ import SingleMovie from "@components/SingleMovie";
 import NavBar from "@components/NavBar";
 import axios from "axios";
 import { MovieInterface } from "@types";
-
 import { Dimensions } from "react-native";
+
 const fullwidth = Dimensions.get("window").width;
 export const isWeb: boolean = Platform.OS === "web";
 
@@ -111,7 +111,9 @@ const styles = StyleSheet.create({
     numColumns: isWeb ? 4 : 1,
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 27,
+    rowGap: 0,
+    columnGap: 27,
+    overflow: "hidden",
   },
 
   button: {
